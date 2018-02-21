@@ -5,7 +5,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        Hallo Wurlt!
+        <h1>React-Weather</h1>
+        <p>Enter your latitude and longitude to get the weather!</p>
+        <form>
+          <label>Latitude:</label>
+          <input type="text" />
+          <label>Longitude:</label>
+          <input type="text" />
+          <button type="submit">Calculate Weather!</button>
+        </form>
       </div>
     );
   }
