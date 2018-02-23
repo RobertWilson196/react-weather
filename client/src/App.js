@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       lat: 0,
       lon: 0,
-      currentWeather: {}
+      currentWeather: {},
+      error: null
     };
     this.handleLatChange = this.handleLatChange.bind(this);
     this.handleLonChange = this.handleLonChange.bind(this);
@@ -43,7 +44,10 @@ class App extends Component {
         });
       })
       .catch(error => {
-        console.error(error); //give FEEDBACK
+        console.log(error);
+        this.setState({
+          error: "Something is broke"
+        });
       });
   }
 
@@ -76,6 +80,7 @@ class App extends Component {
           />
           <button type="submit">Calculate Weather!</button>
         </form>
+        { this.state.error ? <h1>{this.state.error}</h1> : '' }
         <pre>{JSON.stringify(this.state.currentWeather, null, 4)}</pre>
         {isEmptyObject(this.state.currentWeather) ?
           "" :
