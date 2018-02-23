@@ -63,6 +63,7 @@ class App extends Component {
             type="number"
             min="-90"
             max="90"
+            step='0.0001'
             value={this.state.lat}
             onChange={e => this.handleLatChange(e)}
             required
@@ -74,6 +75,7 @@ class App extends Component {
             type="number"
             min="-180"
             max="180"
+            step='0.0001'
             value={this.state.lon}
             onChange={e => this.handleLonChange(e)}
             required
