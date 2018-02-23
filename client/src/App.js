@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import { getWeather } from "./services/weather";
 import CurrentWeather from './CurrentWeather';
+import PropTypes from 'prop-types';
+
+import { getWeather } from "./services/weather";
+import { isEmptyObject } from './utils';
+
 import "./App.css";
 
 class App extends Component {
@@ -39,7 +43,7 @@ class App extends Component {
         });
       })
       .catch(error => {
-        console.error(error);
+        console.error(error); //give FEEDBACK
       });
   }
 
@@ -73,11 +77,9 @@ class App extends Component {
           <button type="submit">Calculate Weather!</button>
         </form>
         <pre>{JSON.stringify(this.state.currentWeather, null, 4)}</pre>
-        {Object.keys(this.state.currentWeather).length === 0 ? (
-          ""
-        ) : (
-          <CurrentWeather {...this.state.currentWeather }/>
-        )}
+        {isEmptyObject(this.state.currentWeather) ?
+          "" :
+          <CurrentWeather {...this.state.currentWeather }/>}
       </div>
     );
   }
