@@ -11,3 +11,5 @@ export const convertTimestamp = (seconds) => {
 
     return `${hours}:${minutes} ${month}/${day}/${year}`
 }
+
+export const pickIcon
