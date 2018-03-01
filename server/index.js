@@ -1,4 +1,5 @@
 //imports
+const path = require('path');
 const express = require('express');
 const axios = require('axios');
 
@@ -9,6 +10,9 @@ const {API_KEY} = process.env;
 //stuff
 const serverApp = express();
 const port = process.env.PORT || 5000;
+
+//middleware
+serverApp.use(express.static('client/build'));
 
 //                 : means variable ( changing )
 serverApp.get('/forecast/:lat,:lon', function(request, response)
@@ -24,6 +28,12 @@ serverApp.get('/forecast/:lat,:lon', function(request, response)
         });
 
 }); 
+
+//this serves the finished React app
+serverApp.get('*', (request, response) =>
+{
+    response.sendFile('index.html', { root: path.resolve('client/build') });
+});
 
 serverApp.listen(port, () => {
     console.log(`Now listening on port ${port}.`)
